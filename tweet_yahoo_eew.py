@@ -6,8 +6,7 @@ def main():
     url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/'
     req = requests.get(url)
     soup = bs(req.content,'html.parser')
-    f = soup.find_all('small')
-    info = [f[i].text for i in range(14) if i % 2 != 0]
+    info = [i.text for i in soup.find_all(width="70%")]
     pic = soup.find(id='earthquake-01').find('img').get('src')
     check(pic)
     text = '［地震速報］#jishin \n・時刻: {}\n・震源地: {}\n・最大震度: {}\n・マグニチュード: {}\n・深さ: {}\n・緯度/経度: {}\n・情報: {}\n'.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6])
