@@ -22,15 +22,16 @@ def get_pic(media_url):
 
 
 def check(text):
-    with open('data.txt','r') as file1:
+    with open('check.txt','r') as file1:
         t = file1.read()
     if text != t:
         print('update')
-        with open('data.txt','w') as file2:
+        with open('check.txt','w') as file2:
             file2.write(text)
     else:
         print('no update')
         sys.exit()
+
 
 def tweet(text,lat,long_):
     consumer_key = 'your_comsumer_key'
