@@ -8,3 +8,5 @@
 ```python3 main.py```
 ## Description
 Raspberry Piのcronで1分間隔でプログラムを起動して更新があったらツイートするアカウントを作りました。→ https://twitter.com/v0x0o
+
+<img src="https://i.imgur.com/rRE5ylI.png">
