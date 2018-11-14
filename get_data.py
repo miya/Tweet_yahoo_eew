@@ -35,6 +35,3 @@ def check(text):
     else:
         print('no update')
         sys.exit()
-
-data = data()
-print(data)
