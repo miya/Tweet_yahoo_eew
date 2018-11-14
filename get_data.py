@@ -18,7 +18,7 @@ def data():
         p = ''.join([i.text.replace('\u3000','、').replace('\n','') for i in p.find_all(width="99%")])
         p = p.strip('、')
         text2.append('《{}》 {:.135}'.format(g,p))
-    return text,geocode,info[2],text2
+    return text,geocode,info[2],text2[::-1]
 
 def get_pic(media_url):
     req = requests.get(media_url)
@@ -36,3 +36,5 @@ def check(text):
         print('no update')
         sys.exit()
 
+data = data()
+print(data)

@@ -9,7 +9,8 @@ def tweet(text,lat=None,long_=None,id_=None):
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth)
     if id_ == None:
-        data = api.update_with_media(filename='eew.png',status=text,lat=lat,long=long_)
-        return data.id
+        tweet = api.update_with_media(filename='eew.png',status=text,lat=lat,long=long_)
+        return tweet.id
     if id_ != None:
-        api.update_status(status=text,in_reply_to_status_id =id_)
+        tweet = api.update_status(status=text,in_reply_to_status_id =id_)
+        return tweet.id
