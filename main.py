@@ -3,6 +3,8 @@ from get_data import data
 
 if __name__ == '__main__':
     data = data()
-    id_ = tweet.tweet(data[0],lat=data[1][0],long_=data[1][1])
+    tweet_id = tweet.tweet(data[0],lat=data[1][0],long_=data[1][1])
+    toot_id = tweet.toot(data[0])
     for i in data[3]:
-        id_ = tweet.tweet(i,id_=id_)
+        tweet_id = tweet.tweet(i,id_=tweet_id)
+        toot_id = tweet.toot(i,id_=toot_id)

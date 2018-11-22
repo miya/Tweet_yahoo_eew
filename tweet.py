@@ -1,4 +1,5 @@
 import tweepy
+from mastodon import Mastodon
 
 def tweet(text,lat=None,long_=None,id_=None):
     consumer_key = 'consumer_key'
@@ -14,3 +15,16 @@ def tweet(text,lat=None,long_=None,id_=None):
     if id_ != None:
         tweet = api.update_status(status=text,in_reply_to_status_id =id_)
         return tweet.id
+
+def toot(text,id_=None):
+    mastodon = Mastodon(
+    client_id="app_key.txt",
+    access_token="user_key.txt",
+    api_base_url = "https://pawoo.net")
+    media_files = mastodon.media_post('eew.png', "image/png")
+    if id_ == None:
+        toot = mastodon.status_post(status=text, visibility='direct', media_ids=media_files)
+        return toot.id
+    if id_ != None:
+        toot = mastodon.status_post(status=text, visibility='direct', in_reply_to_id=id_,)
+        return toot.id
