@@ -21,11 +21,13 @@ RaspberryPiのcronで1分間隔でプログラムを起動し更新があった�
 ## How to use
 setupを行いsample.pyを実行すれば地震情報がツイートできます。  
 
-ファイルのインポート  
+### sample.pyを実行する  
+
+別ファイルから読み込む場合はインポートする  
 ```Python
 from EEW import EEW
 ```
-インスタンスの作成　　
+インスタンスの作成  
 ```Python
 eew = EEW()
 ```
@@ -33,8 +35,7 @@ eew = EEW()
 ```Python
 data = eew.get_data()
 ```
-
-ツイート　　
+ツイート  
 ```Python
 tweet_id = eew.tweet(text=data[0], lat=data[2][0], long_=data[2][1])
 ```
