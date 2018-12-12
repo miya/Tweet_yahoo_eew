@@ -68,8 +68,8 @@ class EEW:
         api_base_url = "https://pawoo.net")
         media_files = mastodon.media_post('eew.png', "image/png")
         if id_ == None:
-            toot = mastodon.status_post(status=text, visibility='direct', media_ids=media_files)
+            toot = mastodon.status_post(status=text, visibility='public', media_ids=media_files)
             return toot.id
         if id_ != None:
-            toot = mastodon.status_post(status=text, visibility='direct', in_reply_to_id=id_)
+            toot = mastodon.status_post(status=text, visibility='public', in_reply_to_id=id_)
             return toot.id
