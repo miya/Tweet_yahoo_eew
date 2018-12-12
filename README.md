@@ -7,10 +7,10 @@
 
 ```cd Tweet_yahoo_eew```  
 
-エディターでEEW.pyを開きconsumer_key、consumer_secret、access_key、ccess_secretをそれぞれ自分のものに書き換える。  
+エディターでEEW.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。  
 
 ## Description
-更新の有無はcheck.txtに震度画像のURLを書き込み、プログラムを起動するたびにcheck.txtを参照し以前の書き込みと同一だったら終了、更新があったらtweet関数を呼び出してツイートをします。 
+更新の有無はcheck.txtに震度画像のURLを書き込み、プログラムを起動するたびにcheck.txtを参照し以前の書き込みと同一だったら終了、更新があったらtweetメソッドを呼び出してツイートをします。 
 
 ## Sample
 実際に動かしてみた → https://twitter.com/v0x0o  
