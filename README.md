@@ -1,11 +1,11 @@
 # Tweet_yahoo_eew
 [Yahoo地震情報](https://typhoon.yahoo.co.jp/weather/earthquake/)の更新をツイートするプログラム
 ## Setup
-```git clone https://github.com/0x0u/Tweet_yahoo_eew.git```  
-
-```pip3 install -r requiremenets.txt```  
-
-```cd Tweet_yahoo_eew```  
+```
+git clone https://github.com/0x0u/Tweet_yahoo_eew.git  
+pip3 install -r requiremenets.txt  
+cd Tweet_yahoo_eew  
+```  
 
 エディターでEEW.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。  
 
