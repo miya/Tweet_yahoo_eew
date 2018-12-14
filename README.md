@@ -19,9 +19,7 @@ RaspberryPiのcronで1分間隔でプログラムを起動し更新があった�
 <img src="https://i.imgur.com/rRE5ylI.png">
 
 ## How to use
-setupを行いsample.pyを実行すれば地震情報がツイートできます。  
-
-### sample.pyを実行する  
+setupを行いsample.pyを実行すれば地震情報がツイートできます。
 
 別ファイルから読み込む場合はインポートする  
 ```Python
