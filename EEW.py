@@ -15,8 +15,8 @@ class EEW:
         soup = BeautifulSoup(req.text, 'html.parser')
         info = [i.text for i in soup.find_all(width="70%")]
         image = soup.find(id='earthquake-01').find('img').get('src')
-        self._check(text=image)
-        self._get_image(image_url=image)
+        self.__check(text=image)
+        self.__get_image(image_url=image)
         text = '[地震速報]\n・時刻: {}\n・震源地: {}\n・最大震度: {}\n・マグニチュード: {}\n・深さ: {}\n・緯度/経度: {}\n・情報: {}'.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6])
         geocode = re.findall('\d+[.]+\d', info[5])
         place = soup.find_all(width="90%")[::-1]
@@ -30,12 +30,12 @@ class EEW:
             text2.append('《震度{}》 {}'.format(i+1, t))
         return text, text2, geocode
 
-    def _get_image(self, image_url):
+    def __get_image(self, image_url):
         req = requests.get(image_url)
         with open('eew.png', 'wb') as w:
             w.write(req.content)
 
-    def _check(self, text):
+    def __check(self, text):
         with open('check.txt','r') as file1:
             t = file1.read()
         if text != t:
