@@ -4,3 +4,4 @@ check.txt
 requirements.txt
 README.md
 test.py
+__pycache__
