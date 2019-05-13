@@ -18,7 +18,7 @@ class EEW:
         soup = BeautifulSoup(req.text, 'html.parser')
         info = [i.text for i in soup.find_all(width="70%")]
         image = soup.find(id='earthquake-01').find('img').get('src')
-        # self.__check(text=image)
+        self.__check(text=image)
         self.__get_image(image_url=image)
         text = '[地震速報]\n・時刻: {}\n・震源地: {}\n・最大震度: {}\n・マグニチュード: {}\n・深さ: {}\n・緯度/経度: {}\n・情報: {}'.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6])
         geocode = re.findall('\d+[.]+\d', info[5])
