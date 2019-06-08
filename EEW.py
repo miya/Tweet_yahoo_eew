@@ -11,7 +11,7 @@ from mastodon import Mastodon
 Yahoo地震情報からデータ（時刻、震源地、祭壇震度、マグニチュード、深さ、座標、津波などの情報、揺れた地域）を取得する
 """
 def get_data():
-    url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/20190525152053.html'
+    url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/'
     req = requests.get(url)
     soup = BeautifulSoup(req.text, 'lxml')
     check(soup)
@@ -94,9 +94,9 @@ def mastodon_api():
 def toot(mastodon, text, id_=None):
     media_files = mastodon.media_post('eew.png', "image/png")
     if id_ == None:
-        toot = mastodon.status_post(status=text, visibility='direct', media_ids=media_files)
+        toot = mastodon.status_post(status=text, visibility='public', media_ids=media_files)
         return toot.id
     elif id_ != None:
-        toot = mastodon.status_post(status=text, visibility='direct', in_reply_to_id=id_)
+        toot = mastodon.status_post(status=text, visibility='public', in_reply_to_id=id_)
         return toot.id
         
