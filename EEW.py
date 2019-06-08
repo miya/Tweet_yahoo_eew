@@ -11,7 +11,7 @@ from mastodon import Mastodon
 Yahoo地震情報からデータ（時刻、震源地、祭壇震度、マグニチュード、深さ、座標、津波などの情報、揺れた地域）を取得する
 """
 def get_data():
-    url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/'
+    url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/20190525152053.html'
     req = requests.get(url)
     soup = BeautifulSoup(req.text, 'lxml')
     check(soup)
@@ -21,13 +21,16 @@ def get_data():
     text = '[地震速報]\n・時刻: {}\n・震源地: {}\n・最大震度: {}\n・マグニチュード: {}\n・深さ: {}\n・緯度/経度: {}\n・情報: {}'.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6])
     geocode = re.findall('\d+[.]+\d', info[5])
     place = soup.find_all(width="90%")[::-1]
+    intensity = int(re.search('\d+', info[2]).group(0))
     text2 = []
-    intensity = int(re.findall('\d+', info[2])[0])
     for i in range(intensity):
         p = '、'.join(re.findall('(.+?)\u3000', str(place[i])))
         if len(p) >= 133:
             p = '{:.133}...'.format(p)
-        text2.append('《震度{}》 {}'.format(i+1, p))
+        inten = i + 1
+        if inten == 5 or inten == 6:
+            inten = info[2]
+        text2.append('《震度{}》 {}'.format(inten, p))
     return text, text2, geocode
 
 
