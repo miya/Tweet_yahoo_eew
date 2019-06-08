@@ -43,19 +43,22 @@ def get_image(image_url):
 # 更新チェックメソッド
 """
 更新の有無を確認するためのもの
-地震情報の画像URLをcheck.txtに書き込み、cronなどで定期実行した際に
-同一のURLだったらプログラム終了、違っていたら続行とする
+Yahoo地震情報トップの履歴最上段のhtmlをスクレイピングし発生時刻の数値をcheck.txtに書き込む
+cronなどで定期実行した際に同一の数値だったらプログラム終了、異なっていたら続行とする
 """
-def check(text):
+def check(soup):
+    f = soup.find(class_='yjw_table yjSt boderset').find_all('a')[1].get('href')
+    p = '/weather/jp/earthquake/(\d+).html'
+    time = re.search(p, f).group(1)
     with open('check.txt','r') as file1:
         t = file1.read()
-    if text != t:
+    if time != t:
         print('更新があります')
         with open('check.txt','w') as file2:
-            file2.write(text)
+            file2.write(time)
     else:
         print('更新がありません')
-        sys.exit()
+        sys.exit()    
 
 # Twitter API
 def twitter_api():
