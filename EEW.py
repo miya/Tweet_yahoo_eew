@@ -98,3 +98,4 @@ class EEW:
         elif id_ != None:
             toot = mastodon.status_post(status=text, visibility='direct', in_reply_to_id=id_)
             return toot.id
+
