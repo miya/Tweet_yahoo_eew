@@ -96,10 +96,8 @@ def mastodon_api():
     api_base_url = "https://pawoo.net")
     return mastodon
 
-
 # Toot用メソッド
-def toot(text, id_=None):
-    mastodon = mastodon_api()
+def toot(mastodon, text, id_=None):
     media_files = mastodon.media_post('eew.png', "image/png")
     if id_ == None:
         toot = mastodon.status_post(status=text, visibility='direct', media_ids=media_files)
@@ -107,3 +105,4 @@ def toot(text, id_=None):
     elif id_ != None:
         toot = mastodon.status_post(status=text, visibility='direct', in_reply_to_id=id_)
         return toot.id
+        
