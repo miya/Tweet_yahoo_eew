@@ -99,4 +99,16 @@ def toot(mastodon, text, id_=None):
     elif id_ != None:
         toot = mastodon.status_post(status=text, visibility='public', in_reply_to_id=id_)
         return toot.id
-        
+
+
+# メイン処理
+if __name__ == '__main__':
+    data = get_data()
+    twitter = twitter_api()
+    tweet_id = tweet(twitter, text=data[0], lat=data[2][0], lon=data[2][1])
+    mastodon = mastodon_api()
+    toot_id = toot(mastodon, text=data[0])
+    
+    for i in data[1]:
+        tweet_id = tweet(twitter, text=i, id_=tweet_id)
+        toot_id = toot(mastodon, text=i, id_=toot_id)
