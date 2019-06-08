@@ -6,17 +6,17 @@ from bs4 import BeautifulSoup
 from mastodon import Mastodon
 
 
+# データ取得メソッド
 """
-ここでTwitter及びMastodonに投稿するための
-データ（時刻、震源地、祭壇震度、マグニチュード、深さ、座標、津波などの情報、揺れた地域）を取得する
+Yahoo地震情報からデータ（時刻、震源地、祭壇震度、マグニチュード、深さ、座標、津波などの情報、揺れた地域）を取得する
 """
 def get_data():
     url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/'
     req = requests.get(url)
     soup = BeautifulSoup(req.text, 'lxml')
+    check(soup)
     info = [i.text for i in soup.find_all(width="70%")]
     image = soup.find(id='earthquake-01').find('img').get('src')
-    check(text=image)
     get_image(image_url=image)
     text = '[地震速報]\n・時刻: {}\n・震源地: {}\n・最大震度: {}\n・マグニチュード: {}\n・深さ: {}\n・緯度/経度: {}\n・情報: {}'.format(info[0],info[1],info[2],info[3],info[4],info[5],info[6])
     geocode = re.findall('\d+[.]+\d', info[5])
@@ -29,7 +29,8 @@ def get_data():
             p = '{:.133}...'.format(p)
         text2.append('《震度{}》 {}'.format(i+1, p))
     return text, text2, geocode
-    
+
+
 # 画像保存用メソッド
 """
 地震情報の画像をダウンロードし保存する
@@ -60,6 +61,7 @@ def check(soup):
         print('更新がありません')
         sys.exit()    
 
+
 # Twitter API
 def twitter_api():
     consumer_key = 'consumer_key'
@@ -71,6 +73,7 @@ def twitter_api():
     api = tweepy.API(auth)
     return api
 
+
 # Tweet用メソッド
 def tweet(text, lat=None, lon=None, id_=None):
     api = twitter_api()
@@ -81,6 +84,7 @@ def tweet(text, lat=None, lon=None, id_=None):
         tweet = api.update_status(status=text, in_reply_to_status_id =id_)
         return tweet.id
 
+
 # Mastodon API
 def mastodon_api():
     mastodon = Mastodon(
@@ -88,6 +92,7 @@ def mastodon_api():
     access_token="user_key.txt",
     api_base_url = "https://pawoo.net")
     return mastodon
+
 
 # Toot用メソッド
 def toot(text, id_=None):
