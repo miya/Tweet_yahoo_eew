@@ -33,7 +33,6 @@ def get_data():
         text2.append('《震度{}》 {}'.format(inten, p))
     return text, text2, geocode
 
-
 # 画像保存用メソッド
 """
 地震情報の画像をダウンロードし保存する
@@ -42,7 +41,6 @@ def get_image(image_url):
     req = requests.get(image_url)
     with open('eew.png', 'wb') as w:
         w.write(req.content)
-
 
 # 更新チェックメソッド
 """
@@ -64,7 +62,6 @@ def check(soup):
         print('更新がありません')
         sys.exit()    
 
-
 # Twitter API
 def twitter_api():
     consumer_key = 'consumer_key'
@@ -76,17 +73,14 @@ def twitter_api():
     api = tweepy.API(auth)
     return api
 
-
 # Tweet用メソッド
-def tweet(text, lat=None, lon=None, id_=None):
-    api = twitter_api()
+def tweet(twitter, text, lat=None, lon=None, id_=None):
     if id_ == None:
-        tweet = api.update_with_media(filename='eew.png', status=text, lat=lat, long=lon)
+        tweet = twitter.update_with_media(filename='eew.png', status=text, lat=lat, long=lon)
         return tweet.id
     elif id_ != None:
-        tweet = api.update_status(status=text, in_reply_to_status_id =id_)
+        tweet = twitter.update_status(status=text, in_reply_to_status_id =id_)
         return tweet.id
-
 
 # Mastodon API
 def mastodon_api():
