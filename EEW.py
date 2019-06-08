@@ -13,7 +13,7 @@ from mastodon import Mastodon
 def get_data():
     url = 'https://typhoon.yahoo.co.jp/weather/jp/earthquake/'
     req = requests.get(url)
-    soup = BeautifulSoup(req.text, 'html.parser')
+    soup = BeautifulSoup(req.text, 'lxml')
     info = [i.text for i in soup.find_all(width="70%")]
     image = soup.find(id='earthquake-01').find('img').get('src')
     check(text=image)
