@@ -7,7 +7,7 @@ $ pip3 install -r requiremenets.txt
 $ cd Tweet_yahoo_eew  
 ```  
 
-エディターでEEW.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。  
+エディターでeew.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。Mastodonで投稿する場合は
 
 ## Description
 更新の有無はcheck.txtにYahoo地震情報トップ>履歴の最上部のhtmlをスクレイピングし発生時刻の数値をcheck.txtに書き込み、プログラムを起動するたびにcheck.txtを参照し以前の書き込みと同一だったら終了、更新があったらtweetメソッドを呼び出してツイートをします。 
@@ -19,7 +19,7 @@ Mastodon(Pawoo): https://pawoo.net/@eew
 
 RaspberryPiのcronで1分間隔でプログラムを起動し更新があったらツイートするアカウントになっています。発生時刻、震源地、最大震度、マグニチュード、深さ、座標、地震情報を震源地のイメージ画像とともにツイート、それに対して揺れが観測された地域の情報をスレッドでぶら下げます。  
 
-<img src="https://i.imgur.com/rRE5ylI.png">
+<img src="https://user-images.githubusercontent.com/34241526/59153916-3c724400-8aa1-11e9-904b-9939ea452cd3.png">
 
 ## How it works
 setupを行うことでこのスクリプトを使うことが出来ます。
@@ -42,7 +42,7 @@ dataを実際に出力するとこうなる
 ['《震度1》 伊方町、松野町、愛媛鬼北町、土佐清水市、黒潮町、神埼市、西原村、山都町、大分市、臼杵市、日向市、宮崎美郷町', '《震度2》 宇和島市、西予市、愛南町、大月町、阿蘇市、産山村、熊本高森町、佐伯市、津久見市、竹田市、豊後大野市、延岡市、高千穂町', '《震度3》 宿毛市']
 ['32.7', '132.3']
 ```
-ツイート  
+ツイート（Twitter）
 ```Python
 twitter = twitter_api()
 tweet_id = tweet(twitter, text=data[0], lat=data[2][0], lon=data[2][1])
@@ -53,6 +53,15 @@ tweet_id = tweet(twitter, text=data[0], lat=data[2][0], lon=data[2][1])
 ```Python
 for i in data[1]:
     tweet_id = tweet(twitter, text=i, id_=tweet_id)
+```
+
+トゥート（Mastodon）
+```python
+mastodon = mastodon_api()
+toot_id = toot(mastodon, text=data[0])
+for i in data[1]:
+    tweet_id = tweet(twitter, text=i, id_=tweet_id)
+    toot_id = toot(mastodon, text=i, id_=toot_id)
 ```
 
 
