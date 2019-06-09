@@ -7,7 +7,7 @@ $ pip3 install -r requiremenets.txt
 $ cd Tweet_yahoo_eew  
 ```  
 
-エディターでeew.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。Mastodonで投稿する場合は
+エディターでeew.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。Mastodonで投稿する場合は[CreateKeys.py](https://github.com/0x0u/Tweet_yahoo_eew/blob/master/CreateKeys.py)を編集、実行しapp_key.txtとuser_key.txtを同一ディレクトリに生成してください。
 
 ## Description
 更新の有無はcheck.txtにYahoo地震情報トップ>履歴の最上部のhtmlをスクレイピングし発生時刻の数値をcheck.txtに書き込み、プログラムを起動するたびにcheck.txtを参照し以前の書き込みと同一だったら終了、更新があったらtweetメソッドを呼び出してツイートをします。 
@@ -33,7 +33,7 @@ dataを実際に出力するとこうなる
 ```
 [地震速報]
 ・時刻: 2019年5月12日 15時07分ごろ
-・震源地: 日向灘v
+・震源地: 日向灘
 ・最大震度: 3
 ・マグニチュード: 4.3
 ・深さ: 30km
@@ -55,7 +55,7 @@ for i in data[1]:
     tweet_id = tweet(twitter, text=i, id_=tweet_id)
 ```
 
-トゥート（Mastodon）
+トゥート（Mastodon）上記のツイート動作とほとんど同じなので省略
 ```python
 mastodon = mastodon_api()
 toot_id = toot(mastodon, text=data[0])
