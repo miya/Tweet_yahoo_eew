@@ -7,7 +7,7 @@ $ pip3 install -r requiremenets.txt
 $ cd Tweet_yahoo_eew  
 ```  
 
-エディターでeew.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。Mastodonで投稿する場合は[CreateKeys.py](https://github.com/0x0u/Tweet_yahoo_eew/blob/master/CreateKeys.py)を編集、実行しapp_key.txtとuser_key.txtを同一ディレクトリに生成してください。
+エディターでeew.pyを開きconsumer_key、consumer_secret、access_key、access_secretをそれぞれ自分のものに書き換える。Mastodonで投稿する場合は[CreateKeys.py](https://github.com/0x0u/Tweet_yahoo_eew/blob/master/CreateKeys.py)に自分のアカウントのインスタンス名、メールアドレス、パスワードを記述し実行。app_key.txtとuser_key.txtを同一ディレクトリに生成してください。
 
 ## Description
 更新の有無はcheck.txtにYahoo地震情報トップ>履歴の最上部のhtmlをスクレイピングし発生時刻の数値をcheck.txtに書き込み、プログラムを起動するたびにcheck.txtを参照し以前の書き込みと同一だったら終了、更新があったらtweetメソッドを呼び出してツイートをします。 
