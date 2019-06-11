@@ -15,7 +15,7 @@ $ cd Tweet_yahoo_eew
 ## Sample
 実際に動かしているアカウント  
 Twitter: https://twitter.com/v0x0o  
-Mastodon(Pawoo): https://pawoo.net/@eew
+Mastodon（Pawoo）: https://pawoo.net/@eew
 
 RaspberryPiのcronで1分間隔でプログラムを起動し更新があったらツイートするアカウントになっています。発生時刻、震源地、最大震度、マグニチュード、深さ、座標、地震情報を震源地のイメージ画像とともにツイート、それに対して揺れが観測された地域の情報をスレッドでぶら下げます。  
 
